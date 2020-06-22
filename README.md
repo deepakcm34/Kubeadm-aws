@@ -7,6 +7,7 @@ The folder "yamls" contains the yaml files es,kibana,wordpress,storageclass and 
 The folder "aws-vpc" contains terraform files to build a VPC
 
 The folder "instance" contains terraform files to build 4 instances with below 7 changes:
+ 
  1: Assign VPC and security group.
  
  2: Creates a IAM role with EC2 full access and assign to the instances.
