@@ -22,7 +22,7 @@ variable aws_zones {
 variable private_subnets {
   description = "Create both private and public subnets"
   type = "string"
-  default = "false"
+  default = "true"
 }
 
 # Resource naming
