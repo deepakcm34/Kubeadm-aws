@@ -30,14 +30,14 @@ Make sure your bastion host have the aws cli configured and  Terraform v0.12.26 
 
 * Clone the git repo to the bastion host:
 
-git clone https://github.com/deepakcm34/Kubeadm-aws.git
+      git clone https://github.com/deepakcm34/Kubeadm-aws.git
 
 cd Kubeadm-aws
 
 
 * Initiate the init.sh script:
 
-./init.sh
+       ./init.sh
 
            The script will ask you to enter region,AZ, your ssh public key,clustername,vpc name etc. Kindly enter those details. Once you give complete details, the script will start to build the VPC and instances using terraform.
 
@@ -49,32 +49,32 @@ cd Kubeadm-aws
 
   1: Kindly login to the instances (both master and worker) and Set the hostname of the EC2 instances to the private DNS hostname of the instance:
  
-  sudo hostnamectl set-hostname $(curl -s http://169.254.169.254/latest/meta-data/local-hostname)
+      sudo hostnamectl set-hostname $(curl -s http://169.254.169.254/latest/meta-data/local-hostname)
  
  Install docker-ce, kubelet, kubeadm and kubectl in master and worker nodes
  
   2: Get the Docker gpg key:
 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
   3: Add the Docker repository:
 
-sudo add-apt-repository    "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+     sudo add-apt-repository    "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
   
   
    4: Get the Kubernetes gpg key:
 
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
    5: Add the Kubernetes repository:
 
-cat << EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list \
-deb https://apt.kubernetes.io/ kubernetes-xenial main \
-EOF
+    cat << EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list \
+    deb https://apt.kubernetes.io/ kubernetes-xenial main \
+    EOF
 
    6: Update your packages:
 
-sudo apt-get update
+    sudo apt-get update
 
    7: Install Docker, kubelet, kubeadm, and kubectl:
   
@@ -82,15 +82,15 @@ sudo apt-get update
 
    8: Hold them at the current version:
 
-sudo apt-mark hold docker-ce kubelet kubeadm kubectl
+    sudo apt-mark hold docker-ce kubelet kubeadm kubectl
 
    9: Add the iptables rule to sysctl.conf:
 
-echo "net.bridge.bridge-nf-call-iptables=1" | sudo tee -a /etc/sysctl.conf
+    echo "net.bridge.bridge-nf-call-iptables=1" | sudo tee -a /etc/sysctl.conf
 
    10: Enable iptables immediately:
 
-sudo sysctl -p
+    sudo sysctl -p
 
 
 ---------------------------------------------------------------
@@ -105,7 +105,11 @@ For kubelet, the service will be run based on the kubeadm conf file "/etc/system
 
 regarding the  API server, controller manager, we have to create the yaml configuration file and add the --cloud-provider=aws option to use while running the kubeadm command (kubeconf-init.yaml) from the master.
 
-Please run the kubeadm init from the master with configuration file : “sudo kubeadm init --config kubeconf-init.yaml” (The yaml file present under yamls/kubeadm-init, please replace "privatehostnameofyourmasterinstance" with your master private DNS name in kubeconf-init.yaml)
+Please run the kubeadm init from the master with configuration file : 
+
+    sudo kubeadm init --config kubeconf-init.yaml
+    
+(The yaml file present under yamls/kubeadm-init, please replace "privatehostnameofyourmasterinstance" with your master private DNS name in kubeconf-init.yaml)
 
 Once the initialization completed, you will get the join URL with the apiendpoint, token,  caCertHashes to add the worker nodes to the cluster
 
@@ -116,11 +120,9 @@ Step4:
 
 Set up local kubeconfig (run only on the master):
 
-mkdir -p $HOME/.kube
-
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
+    mkdir -p $HOME/.kube
+    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 
 
@@ -129,17 +131,17 @@ Install CNI plugins(Weave) :
 
 Download the CNI Plugins required for weave on each of the worker nodes
 
-wget https://github.com/containernetworking/plugins/releases/download/v0.7.5/cni-plugins-amd64-v0.7.5.tgz
+    wget https://github.com/containernetworking/plugins/releases/download/v0.7.5/cni-plugins-amd64-v0.7.5.tgz
 
 Extract it to /opt/cni/bin directory
 
-sudo tar -xzvf cni-plugins-amd64-v0.7.5.tgz --directory /opt/cni/bin/
+    sudo tar -xzvf cni-plugins-amd64-v0.7.5.tgz --directory /opt/cni/bin/
 
 Deploy Weave Network
 
 Deploy weave network. Run only once on the master node.
 
-kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+     kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 
 
 
@@ -148,14 +150,14 @@ Step4 :
 
 Once the CNI is ready and the master status is ready, we can join the worker nodes using the join URL which was generated while running the kubeadm init.
 
-kubeadm join 10.0.1.32:6443 --token 633733.1pguylfrm3ux5n70 --discovery-token-ca-cert-hash sha256:90f95a3fbb60ff12091192c99eb7903d89b45abbffb1e74862459360239749f7
+    kubeadm join 10.0.1.32:6443 --token 633733.1pguylfrm3ux5n70 --discovery-token-ca-cert-hash    sha256:90f95a3fbb60ff12091192c99eb7903d89b45abbffb1e74862459360239749f7
 
 
 
 
 check the node status:
 
-kubectl get nodes
+    kubectl get nodes
 
 
 Once the nodes and master are available, you can deploy the wordpress and EFK. Since we integrate the AWS with the cluster, the pv,pvc,loadbalancer etc will be created automatically in the AWS.
