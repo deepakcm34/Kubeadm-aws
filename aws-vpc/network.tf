@@ -43,6 +43,30 @@ resource "aws_security_group" "kubernetes" {
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
+    ingress {
+        from_port = 6784
+        to_port = 6784
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    ingress {
+        from_port = 6781
+        to_port = 6781
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    ingress {
+        from_port = 6783
+        to_port = 6783
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    ingress {
+        from_port = 6782
+        to_port = 6782
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }    
     tags = {
         Name = "kubernetes"
     }
