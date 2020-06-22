@@ -51,7 +51,7 @@ resource "aws_key_pair" "terraform_ec2_key" {
   key_name = "terraform_ec2_key"
   public_key = "mypublicKey"
 }
-resource "aws_instance" "example" {
+resource "aws_instance" "kubernetestest" {
   ami           = "ami-085925f297f89fce1"
   instance_type = "t2.xlarge"
   subnet_id              = "subidsss"
