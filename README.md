@@ -125,9 +125,21 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 
 
-Run the CNI in the master node before joining the worker nodes :
+Install CNI plugins(Weave) :
 
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+Download the CNI Plugins required for weave on each of the worker nodes
+
+wget https://github.com/containernetworking/plugins/releases/download/v0.7.5/cni-plugins-amd64-v0.7.5.tgz
+
+Extract it to /opt/cni/bin directory
+
+sudo tar -xzvf cni-plugins-amd64-v0.7.5.tgz --directory /opt/cni/bin/
+
+Deploy Weave Network
+
+Deploy weave network. Run only once on the master node.
+
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 
 
 
