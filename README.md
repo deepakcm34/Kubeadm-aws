@@ -25,7 +25,7 @@ The folder "instance" contains terraform files to build 4 instances with below 7
 
 ************************************************************************************************************
 
-Make sure your bastion host have the  Terraform v0.12.26 installed, if not kindly install the same.
+Make sure your bastion host have the aws cli configured and  Terraform v0.12.26 installed, if not kindly install the same.
 
 
 * Clone the git repo to the bastion host:
