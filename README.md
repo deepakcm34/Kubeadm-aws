@@ -1,4 +1,4 @@
-# Kubeadm-aws
+# Terraform-aws-kubeadm
 
 OS : ubuntu 18
 
