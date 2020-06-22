@@ -68,8 +68,8 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 
    5: Add the Kubernetes repository:
 
-cat << EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
-deb https://apt.kubernetes.io/ kubernetes-xenial main
+cat << EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list \
+deb https://apt.kubernetes.io/ kubernetes-xenial main \
 EOF
 
    6: Update your packages:
