@@ -37,12 +37,20 @@ resource "aws_iam_role_policy" "kube_policy" {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Action": [
-        "ec2:*"
-      ],
       "Effect": "Allow",
+      "Action": "ec2:*",
       "Resource": "*"
-    }
+     },
+     {
+      "Effect": "Allow",
+      "Action": "elasticloadbalancing:*",
+      "Resource": "*"
+     },
+     {
+      "Effect": "Allow",
+      "Action": "autoscaling:*",
+      "Resource": "*"
+     }
   ]
 }
 EOF
