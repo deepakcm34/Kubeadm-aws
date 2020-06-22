@@ -4,7 +4,7 @@ kind: ClusterConfiguration
 apiServer:
   extraArgs:
     cloud-provider: aws
-controlPlaneEndpoint: ip-10-0-1-98.ec2.internal
+controlPlaneEndpoint: privatehostnameofyourmasterinstance
 controllerManager:
   extraArgs:
     cloud-provider: aws
