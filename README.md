@@ -103,9 +103,9 @@ Step 2:
 
 For kubelet, the service will be run based on the kubeadm conf file "/etc/systemd/system/kubelet.service.d/10-kubeadm.conf", so please add the flag "--cloud-provider=aws" in the ExecStart field of the kubeadm conf file in all the instances (master and worker).
 
-regarding the  API server, controller manager, we have to create the yaml configuration file and add the --cloud-provider=aws option to use while running the kubeadm command (kubeadm_config.yaml) from the master.
+regarding the  API server, controller manager, we have to create the yaml configuration file and add the --cloud-provider=aws option to use while running the kubeadm command (kubeconf-init.yaml) from the master.
 
-Please run the kubeadm init from the master with configuration file : “sudo kubeadm init --config kubeadm_config.yaml” (The yaml file present under yamls/kubeadm-init, please replace "privatehostnameofyourmasterinstance" with your master private DNS name in kubeadm_config.yaml)
+Please run the kubeadm init from the master with configuration file : “sudo kubeadm init --config kubeconf-init.yaml” (The yaml file present under yamls/kubeadm-init, please replace "privatehostnameofyourmasterinstance" with your master private DNS name in kubeconf-init.yaml)
 
 Once the initialization completed, you will get the join URL with the apiendpoint, token,  caCertHashes to add the worker nodes to the cluster
 
