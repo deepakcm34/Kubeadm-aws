@@ -106,7 +106,7 @@ For kubelet, the service will be run based on the kubeadm conf file "/etc/system
 
 regarding the  API server, controller manager, we have to create the yaml configuration file and add the --cloud-provider=aws option to use while running the kubeadm command (kubeadm_config.yaml) from the master.
 
-Please run the kubeadm init from the master with configuration file : “sudo kubeadm init --config kubeadm_config.yaml” (The yaml file present under yamls/kubeadm-init)
+Please run the kubeadm init from the master with configuration file : “sudo kubeadm init --config kubeadm_config.yaml” (The yaml file present under yamls/kubeadm-init, please replace "privatehostnameofyourmasterinstance" with your master private DNS name in kubeadm_config.yaml)
 
 Once the initialization completed, you will get the join URL with the apiendpoint, token,  caCertHashes to add the worker nodes to the cluster
 
