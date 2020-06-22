@@ -14,7 +14,7 @@ The folder "instance" contains terraform files to build 4 instances with below 7
  
  4: Add the below tags for all the instances :
  
-  Key : kubernetes.io/cluster/<clustername> (you can enter the cluster name while initiating the init.sh script)
+  Key : kubernetes.io/cluster/clustername (you can enter the cluster name while initiating the init.sh script)
   Value: owned 
 
   5: 100 GB volume
