@@ -41,7 +41,8 @@ cd Kubeadm-aws
 
            The script will ask you to enter region,AZ, your ssh public key,clustername,vpc name etc. Kindly enter those details. Once you give complete details, the script will start to build the VPC and instances using terraform.
 
-Lets start to setup the cluster:
+
+#      Lets start to setup the cluster:
 
 
  Step1 (setup the below 1-10 in master and worker nodes):
