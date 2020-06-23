@@ -92,7 +92,7 @@ cd Kubeadm-aws
 
     sudo sysctl -p
 
-
+NB: If you want to reduce the admin overhead and avoid the above 1-10 steps to do manually, you can use the "instance-with-bootstrap-template". Please go through the README.md under "instance-with-bootstrap-template"
 ---------------------------------------------------------------
 
 By default kubeadm does not support cloud providers, so that we need to pass the --cloud-provider=aws argument while initializing the kubeadm, otherwise we wont able to integrate the cluster with the AWS.
