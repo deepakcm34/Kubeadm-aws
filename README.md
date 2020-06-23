@@ -51,7 +51,7 @@ cd Kubeadm-aws
  
       sudo hostnamectl set-hostname $(curl -s http://169.254.169.254/latest/meta-data/local-hostname)
  
- Install docker-ce, kubelet, kubeadm and kubectl in master and worker nodes
+ Install docker-ce, kubelet, kubeadm and kubectl in master and worker nodes, proceed below steps for that:
  
   2: Get the Docker gpg key:
 
