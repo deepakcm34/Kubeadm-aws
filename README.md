@@ -45,7 +45,7 @@ cd Kubeadm-aws
 #      Lets start to setup the cluster:
 
 
- Step1 (setup the below 1-10 in master and worker nodes):
+# Step1 (setup the below 1-10 in master and worker nodes):
 
   1: Kindly login to the instances (both master and worker) and Set the hostname of the EC2 instances to the private DNS hostname of the instance:
  
@@ -99,7 +99,7 @@ By default kubeadm does not support cloud providers, so that we need to pass the
 
 --cloud-provider=aws command-line flag should be present for for the API server, controller manager, and every Kubelet in the cluster.
 
-Step 2:
+# Step 2:
 
 For kubelet, the service will be run based on the kubeadm conf file "/etc/systemd/system/kubelet.service.d/10-kubeadm.conf", so please add the flag "--cloud-provider=aws" in the ExecStart field of the kubeadm conf file in all the instances (master and worker).
 
@@ -115,7 +115,7 @@ Once the initialization completed, you will get the join URL with the apiendpoin
 
 eg:   kubeadm join 10.0.1.32:6443 --token 633733.1pguylfrm3ux5n70 --discovery-token-ca-cert-hash sha256:90f95a3fbb60ff12091192c99eb7903d89b45abbffb1e74862459360239749f7
 
-Step4:
+# Step3:
 
 
 Set up local kubeconfig (run only on the master):
@@ -146,7 +146,7 @@ Deploy weave network. Run only once on the master node.
 
 
 
-Step4 :
+# Step4 :
 
 Once the CNI is ready and the master status is ready, we can join the worker nodes using the join URL which was generated while running the kubeadm init.
 
