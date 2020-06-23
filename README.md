@@ -22,6 +22,12 @@ The folder "instance" contains terraform files to build 4 instances with below 7
   6: Adds key using the ssh public key which you update while initiating the init.sh script
 
   7: instance_type = t2.xlarge
+ 
+ The folder "instance-with-bootstrap-template" contains the terraform files to build 4 instances with above 7 changes and also it includes a template file which will automatically install all the 1-10 procedure mentioned in the "step1" in this md file. 
+ 
+NB: You can either use "instance" folder to create the instances and  do the all steps manually, or you can use the "instance-with-bootstrap-template" to create the instances and skip the step1 of this page. If you are using the "instance-with-bootstrap-template", please read the README.md under "instance-with-bootstrap-template".
+ 
+
 
 ************************************************************************************************************
 
@@ -92,7 +98,6 @@ cd Kubeadm-aws
 
     sudo sysctl -p
 
-NB: If you want to reduce the admin overhead and avoid the above 1-10 steps to do manually, you can use the "instance-with-bootstrap-template". Please go through the README.md under "instance-with-bootstrap-template"
 ---------------------------------------------------------------
 
 By default kubeadm does not support cloud providers, so that we need to pass the --cloud-provider=aws argument while initializing the kubeadm, otherwise we wont able to integrate the cluster with the AWS.
