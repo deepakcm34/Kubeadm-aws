@@ -2,6 +2,8 @@ This folder contains the bootstrap template of the instance which will automatic
 
 It will setup all the 1-10.
 
-If you want to use this to reduce the admin overhead, you can move back the current instance folder "Kubeadm-aws/instance", and rename the folder "Kubeadm-aws/instance-with-bootstrap-template" to "Kubeadm-aws/instance", and initiate the init.sh script under "Kubeadm-aws/"
+If you want to use this to reduce the admin overhead, you can move back the current instance folder "Kubeadm-aws/instance", and rename the folder "Kubeadm-aws/instance-with-bootstrap-template" to "Kubeadm-aws/instance", because the init.sh script will only initiate the terraform under the folder name "instance".
+
+Once you rename the folder , initiate the init.sh script under "Kubeadm-aws/"
 
 Once the instances are created, you only have to proceed from the "step2" from the main README.md.
