@@ -163,3 +163,19 @@ check the node status:
 Once the nodes and master are available, you can deploy the wordpress and EFK. Since we integrate the AWS with the cluster, the pv,pvc,loadbalancer etc will be created automatically in the AWS.
 
 NB: Please run the storageclass yaml "storage.yaml" first. because ,I have mentioned that storageclass in the pvc.
+
+Go to the yamls folder.
+    
+    kubectl apply -f storage.yaml
+
+Then deploy the reset of them:
+
+    kubect apply -f wordpress/
+    kubect apply -f es/
+    kubect apply -f kibana/
+    
+ Wait for a few minutes, until the instances are get healthy in service Loadbalancer . Then you can access the Kibana with 5601 port, and wordpress with port 80.
+ 
+ Get the service list:
+    
+    kubect get svc
